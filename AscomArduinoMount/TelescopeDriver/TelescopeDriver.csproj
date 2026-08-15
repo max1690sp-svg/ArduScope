@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>AscomArduinoMount.Telescope</AssemblyName>
+    <RootNamespace>AscomArduinoMount.Telescope</RootNamespace>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ASCOM.Attributes">
+      <HintPath>C:\Program Files (x86)\ASCOM\Platform6\ASCOM.Attributes.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ASCOM.Controls">
+      <HintPath>C:\Program Files (x86)\ASCOM\Platform6\ASCOM.Controls.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ASCOM.DriverAccess">
+      <HintPath>C:\Program Files (x86)\ASCOM\Platform6\ASCOM.DriverAccess.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="System.IO.Ports" />
+  </ItemGroup>
+
+</Project>
