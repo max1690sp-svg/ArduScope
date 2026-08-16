@@ -14,8 +14,45 @@ namespace AscomArduinoMount.Telescope
         private bool _isConnected;
         private readonly object _lockObj = new object();
         
-        public string PortName { get; set; } = "COM3";
-        public int BaudRate { get; set; } = 9600;
+        private string _portName = "COM3";
+        private int _baudRate = 9600;
+        
+        public string PortName 
+        { 
+            get => _portName;
+            set
+            {
+                if (_portName != value)
+                {
+                    _portName = value;
+                    // Если уже подключены, переподключаемся с новым портом
+                    if (_isConnected)
+                    {
+                        Disconnect();
+                        Connect();
+                    }
+                }
+            }
+        }
+        
+        public int BaudRate 
+        { 
+            get => _baudRate;
+            set
+            {
+                if (_baudRate != value)
+                {
+                    _baudRate = value;
+                    // Если уже подключены, переподключаемся с новой скоростью
+                    if (_isConnected)
+                    {
+                        Disconnect();
+                        Connect();
+                    }
+                }
+            }
+        }
+        
         public bool IsConnected => _isConnected;
 
         public event EventHandler<string> DataReceived;
@@ -26,7 +63,7 @@ namespace AscomArduinoMount.Telescope
 
             lock (_lockObj)
             {
-                _serialPort = new SerialPort(PortName, BaudRate, Parity.None, 8, StopBits.One);
+                _serialPort = new SerialPort(_portName, _baudRate, Parity.None, 8, StopBits.One);
                 _serialPort.ReadTimeout = 1000;
                 _serialPort.WriteTimeout = 1000;
                 _serialPort.DataReceived += OnDataReceived;

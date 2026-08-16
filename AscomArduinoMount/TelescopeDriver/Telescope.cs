@@ -18,6 +18,8 @@ namespace AscomArduinoMount.Telescope
         private readonly SerialController _controller;
         private bool _isConnected;
         private bool _disposed;
+        private string _portName = "";
+        private int _baudRate = 9600;
         
         // Параметры телескопа
         private double _siteLatitude = 45.0;
@@ -28,6 +30,34 @@ namespace AscomArduinoMount.Telescope
         {
             _controller = new SerialController();
             _controller.DataReceived += OnDataReceived;
+            
+            // Загружаем сохраненные настройки порта из диалога
+            string savedPort = SetupDialogForm.GetSelectedPort();
+            int savedBaud = SetupDialogForm.GetBaudRate();
+            
+            if (!string.IsNullOrEmpty(savedPort))
+            {
+                _portName = savedPort;
+                _controller.PortName = savedPort;
+            }
+            
+            if (savedBaud > 0)
+            {
+                _baudRate = savedBaud;
+                _controller.BaudRate = savedBaud;
+            }
+        }
+
+        public void SetPort(string port)
+        {
+            _portName = port;
+            _controller.PortName = port;
+        }
+
+        public void SetBaudRate(int baudRate)
+        {
+            _baudRate = baudRate;
+            _controller.BaudRate = baudRate;
         }
 
         private void OnDataReceived(object sender, string data)

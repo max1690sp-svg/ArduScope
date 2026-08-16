@@ -1,56 +1,40 @@
 ```
 # Build artifacts
-*.hex
-*.bin
-*.elf
 *.o
 *.obj
-*.a
-*.lib
-*.so
-*.dll
-*.dylib
-*.exe
+*.out
 
-# Arduino specific
-*.cpp.o
-*.c.o
-*.S.o
-*.d
-*.size
-*.map
-
-# Debug and temporary files
-*.tmp
-*.temp
-*.log
-*.swp
-*~
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Dependencies (if any)
+# Dependencies
 node_modules/
 venv/
 .venv/
 __pycache__/
-*.egg-info/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+target/
+.gradle/
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.env.*
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 ```
